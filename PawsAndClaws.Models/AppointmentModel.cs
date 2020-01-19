@@ -8,7 +8,11 @@ namespace PawsAndClaws.Models
     {
         public AppointmentModel()
         {
-            
+            AppointmentId = 0;
+            PetId = 0;
+            AppointmentDate = null;
+            AppointmentReason = null;
+            Pet = null;
         }
 
         public AppointmentModel(Appointment appointment)

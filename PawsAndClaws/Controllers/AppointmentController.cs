@@ -2,6 +2,7 @@
 using PawsAndClaws.Models;
 using System.Web.Mvc;
 
+
 namespace PawsAndClaws.Controllers
 {
     public class AppointmentController : Controller
@@ -21,10 +22,10 @@ namespace PawsAndClaws.Controllers
             return View(model);
         }
 
-        [Post]
-        public void CreateAppointment()
+        [HttpPost]
+        public ActionResult Create(AppointmentModel model)
         {
-
+            return View(model);
         }
     }
 }

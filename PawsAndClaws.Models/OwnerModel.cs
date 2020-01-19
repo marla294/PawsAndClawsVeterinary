@@ -5,6 +5,15 @@ namespace PawsAndClaws.Models
 {
     public class OwnerModel
     {
+        public OwnerModel()
+        {
+            OwnerId = 0;
+            First = null;
+            Last = null;
+            Phone = null;
+            Address = null;
+        }
+
         public OwnerModel(Owner owner)
         {
             OwnerId = owner.OwnerId;

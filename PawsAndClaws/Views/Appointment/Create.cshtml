@@ -6,7 +6,10 @@
 
 <h3>Create a new appointment</h3>
 <br />
-<form action="/Appointment/Create" method="post">
+@*<form action="/Appointment/CreateAppointment" method="post">*@
+@using (Html.BeginForm("Create", "Appointment", FormMethod.Post))
+{
+    @Html.HiddenFor(i => i.AppointmentId)
     <h4>Appointment Information</h4>
     <br />
     <div class="row">
@@ -61,5 +64,5 @@
     <hr />
     <br />
     <button class="btn btn-default" type="submit" value="submit">Submit</button>
-</form>
+}
 <a class="btn btn-default" src="/Appointment/Index">Back</a>

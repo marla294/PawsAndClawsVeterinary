@@ -5,6 +5,15 @@ namespace PawsAndClaws.Models
 {
     public class PetModel
     {
+        public PetModel()
+        {
+            PetId = 0;
+            PetName = null;
+            Type = null;
+            OwnerId = 0;
+            Owner = null;
+        }
+
         public PetModel(Pet pet)
         {
             PetId = pet.PetId;
