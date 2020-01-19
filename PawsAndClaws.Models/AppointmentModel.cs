@@ -5,6 +5,11 @@ namespace PawsAndClaws.Models
 {
     public class AppointmentModel
     {
+        public AppointmentModel()
+        {
+            
+        }
+
         public AppointmentModel(Appointment appointment)
         {
             AppointmentId = appointment.AppointmentId;

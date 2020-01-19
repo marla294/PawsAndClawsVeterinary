@@ -1,4 +1,5 @@
 ﻿using PawsAndClaws.Logic;
+using PawsAndClaws.Models;
 using System.Web.Mvc;
 
 namespace PawsAndClaws.Controllers
@@ -13,11 +14,11 @@ namespace PawsAndClaws.Controllers
             return View(model);
         }
 
-        public ActionResult About()
+        public ActionResult Create()
         {
-            ViewBag.Message = "Your application description page.";
+            var model = new AppointmentModel();
 
-            return View();
+            return View(model);
         }
 
         public ActionResult Contact()

@@ -170,7 +170,7 @@
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\Appointment\About.cshtml" />
+    <Content Include="Views\Appointment\Create.cshtml" />
     <Content Include="Views\Appointment\Contact.cshtml" />
     <Content Include="Views\Appointment\Index.cshtml" />
   </ItemGroup>
