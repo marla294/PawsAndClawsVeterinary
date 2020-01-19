@@ -1,4 +1,5 @@
 ﻿using PawsAndClaws.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace PawsAndClaws.Models
 {
@@ -14,7 +15,9 @@ namespace PawsAndClaws.Models
         }
 
         public int PetId { get; set; }
+        [Display(Name = "Pet Name: ")]
         public string PetName { get; set; }
+        [Display(Name = "Pet Type:")]
         public string Type { get; set; }
         public int OwnerId { get; set; }
         public virtual OwnerModel Owner { get; set; }

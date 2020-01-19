@@ -1,5 +1,6 @@
 ﻿using System;
 using PawsAndClaws.Data;
+using System.ComponentModel.DataAnnotations;
 
 namespace PawsAndClaws.Models
 {
@@ -21,7 +22,9 @@ namespace PawsAndClaws.Models
 
         public int AppointmentId { get; set; }
         public int PetId { get; set; }
+        [Display(Name = "Date of appointment: ")]
         public DateTime? AppointmentDate { get; set; }
+        [Display(Name = "Reason for appointment: ")]
         public string AppointmentReason { get; set; }
         public virtual PetModel Pet { get; set; }
 

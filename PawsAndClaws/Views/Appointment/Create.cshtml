@@ -6,8 +6,60 @@
 
 <h3>Create a new appointment</h3>
 <br />
-<form>
+<form action="/Appointment/Create" method="post">
+    <h4>Appointment Information</h4>
+    <br />
     <div class="row">
-        <label>Appointment Date: <input /></label>
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.AppointmentDate)
+            @Html.EditorFor(i => i.AppointmentDate)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.AppointmentReason)
+            @Html.EditorFor(i => i.AppointmentReason)
+        </div>
     </div>
+    <hr />
+    <br />
+    <h4>Animal Information</h4>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.Pet.PetName)
+            @Html.EditorFor(i => i.Pet.PetName)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.Pet.Type)
+            @Html.EditorFor(i => i.Pet.Type)
+        </div>
+    </div>
+    <hr />
+    <br />
+    <h4>Owner Contact</h4>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.Pet.Owner.First)
+            @Html.EditorFor(i => i.Pet.Owner.First)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.Pet.Owner.Last)
+            @Html.EditorFor(i => i.Pet.Owner.Last)
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.Pet.Owner.Phone)
+            @Html.EditorFor(i => i.Pet.Owner.Phone)
+        </div>
+        <div class="col-md-4">
+            @Html.LabelFor(i => i.Pet.Owner.Address)
+            @Html.EditorFor(i => i.Pet.Owner.Address)
+        </div>
+    </div>
+    <hr />
+    <br />
+    <button class="btn btn-default" type="submit" value="submit">Submit</button>
 </form>
+<a class="btn btn-default" src="/Appointment/Index">Back</a>

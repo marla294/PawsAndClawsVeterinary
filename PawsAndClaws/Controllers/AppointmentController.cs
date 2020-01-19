@@ -21,11 +21,10 @@ namespace PawsAndClaws.Controllers
             return View(model);
         }
 
-        public ActionResult Contact()
+        [Post]
+        public void CreateAppointment()
         {
-            ViewBag.Message = "Your contact page.";
 
-            return View();
         }
     }
 }
