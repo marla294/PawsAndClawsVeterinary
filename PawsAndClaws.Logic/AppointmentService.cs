@@ -1,5 +1,6 @@
 ﻿using PawsAndClaws.Models;
 using PawsAndClaws.Data;
+using System.Linq;
 
 namespace PawsAndClaws.Logic
 {
@@ -18,6 +19,37 @@ namespace PawsAndClaws.Logic
             }
 
             return model;
+        }
+
+        public AppointmentModel CreateNewAppointment(AppointmentModel model)
+        {
+            return model;
+        }
+
+        public AppointmentModel AddOrEditAppointment(AppointmentModel model)
+        {
+            PetService petLogic = new PetService();
+            petLogic.AddOrEditPet(model.Pet);
+
+            Appointment appointment = new Appointment();
+
+            using (var db = new PawsAndClawsEntities())
+            {
+                appointment = db.Appointments.Where(i => i.AppointmentId == model.AppointmentId).FirstOrDefault();
+
+                if (appointment != null)
+                {
+                    appointment = model.ToDTO();
+                }
+                else
+                {
+                    appointment = db.Appointments.Add(model.ToDTO());
+                }
+
+                db.SaveChanges();
+            }
+
+            return new AppointmentModel(appointment);
         }
     }
 }

@@ -7,10 +7,11 @@ namespace PawsAndClaws.Controllers
 {
     public class AppointmentController : Controller
     {
+        public AppointmentService AppointmentLogic { get; set; } = new AppointmentService();
+
         public ActionResult Index()
         {
-            var logic = new AppointmentService();
-            var model = logic.PopulateAppointmentsViewModel();
+            AppointmentsViewModel model = AppointmentLogic.PopulateAppointmentsViewModel();
 
             return View(model);
         }
@@ -25,6 +26,8 @@ namespace PawsAndClaws.Controllers
         [HttpPost]
         public ActionResult Create(AppointmentModel model)
         {
+            model = AppointmentLogic.AddOrEditAppointment(model);
+
             return View(model);
         }
     }
