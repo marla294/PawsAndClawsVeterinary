@@ -1,0 +1,206 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PawsAndClawsModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Appointments">
+          <Key>
+            <PropertyRef Name="AppointmentId" />
+          </Key>
+          <Property Name="PetId" Type="int" />
+          <Property Name="AppointmentDate" Type="datetime" />
+          <Property Name="AppointmentReason" Type="nchar" MaxLength="128" />
+          <Property Name="AppointmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Owners">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="First" Type="nchar" MaxLength="128" />
+          <Property Name="Last" Type="nchar" MaxLength="128" />
+          <Property Name="Phone" Type="nchar" MaxLength="16" />
+          <Property Name="Address" Type="nchar" MaxLength="128" />
+          <Property Name="OwnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Pets">
+          <Key>
+            <PropertyRef Name="PetId" />
+          </Key>
+          <Property Name="PetName" Type="nchar" MaxLength="128" />
+          <Property Name="Type" Type="nchar" MaxLength="128" />
+          <Property Name="OwnerId" Type="int" />
+          <Property Name="PetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Appointme__PetId__44FF419A">
+          <End Role="Pets" Type="Self.Pets" Multiplicity="0..1" />
+          <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pets">
+              <PropertyRef Name="PetId" />
+            </Principal>
+            <Dependent Role="Appointments">
+              <PropertyRef Name="PetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pets__OwnerId__440B1D61">
+          <End Role="Owners" Type="Self.Owners" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owners">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Pets">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PawsAndClawsModelStoreContainer">
+          <EntitySet Name="Appointments" EntityType="Self.Appointments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Owners" EntityType="Self.Owners" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Pets" EntityType="Self.Pets" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Appointme__PetId__44FF419A" Association="Self.FK__Appointme__PetId__44FF419A">
+            <End Role="Pets" EntitySet="Pets" />
+            <End Role="Appointments" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pets__OwnerId__440B1D61" Association="Self.FK__Pets__OwnerId__440B1D61">
+            <End Role="Owners" EntitySet="Owners" />
+            <End Role="Pets" EntitySet="Pets" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PawsAndClawsModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PawsAndClawsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Appointments" EntityType="PawsAndClawsModel.Appointment" />
+          <EntitySet Name="Owners" EntityType="PawsAndClawsModel.Owner" />
+          <EntitySet Name="Pets" EntityType="PawsAndClawsModel.Pet" />
+          <AssociationSet Name="FK__Pets__OwnerId__440B1D61" Association="PawsAndClawsModel.FK__Pets__OwnerId__440B1D61">
+            <End Role="Owner" EntitySet="Owners" />
+            <End Role="Pet" EntitySet="Pets" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Appointme__PetId__44FF419A" Association="PawsAndClawsModel.FK__Appointme__PetId__44FF419A">
+            <End Role="Pet" EntitySet="Pets" />
+            <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Appointment">
+          <Key>
+            <PropertyRef Name="AppointmentId" />
+          </Key>
+          <Property Name="PetId" Type="Int32" />
+          <Property Name="AppointmentDate" Type="DateTime" Precision="3" />
+          <Property Name="AppointmentReason" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="AppointmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Pet" Relationship="PawsAndClawsModel.FK__Appointme__PetId__44FF419A" FromRole="Appointment" ToRole="Pet" />
+        </EntityType>
+        <EntityType Name="Owner">
+          <Key>
+            <PropertyRef Name="OwnerId" />
+          </Key>
+          <Property Name="First" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="Last" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="16" FixedLength="true" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Pets" Relationship="PawsAndClawsModel.FK__Pets__OwnerId__440B1D61" FromRole="Owner" ToRole="Pet" />
+        </EntityType>
+        <EntityType Name="Pet">
+          <Key>
+            <PropertyRef Name="PetId" />
+          </Key>
+          <Property Name="PetName" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="Type" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
+          <Property Name="OwnerId" Type="Int32" />
+          <Property Name="PetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Owner" Relationship="PawsAndClawsModel.FK__Pets__OwnerId__440B1D61" FromRole="Pet" ToRole="Owner" />
+          <NavigationProperty Name="Appointments" Relationship="PawsAndClawsModel.FK__Appointme__PetId__44FF419A" FromRole="Pet" ToRole="Appointment" />
+        </EntityType>
+        <Association Name="FK__Pets__OwnerId__440B1D61">
+          <End Type="PawsAndClawsModel.Owner" Role="Owner" Multiplicity="0..1" />
+          <End Type="PawsAndClawsModel.Pet" Role="Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="OwnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Appointme__PetId__44FF419A">
+          <End Type="PawsAndClawsModel.Pet" Role="Pet" Multiplicity="0..1" />
+          <End Type="PawsAndClawsModel.Appointment" Role="Appointment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pet">
+              <PropertyRef Name="PetId" />
+            </Principal>
+            <Dependent Role="Appointment">
+              <PropertyRef Name="PetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PawsAndClawsModelStoreContainer" CdmEntityContainer="PawsAndClawsEntities">
+          <EntitySetMapping Name="Appointments">
+            <EntityTypeMapping TypeName="PawsAndClawsModel.Appointment">
+              <MappingFragment StoreEntitySet="Appointments">
+                <ScalarProperty Name="AppointmentId" ColumnName="AppointmentId" />
+                <ScalarProperty Name="AppointmentReason" ColumnName="AppointmentReason" />
+                <ScalarProperty Name="AppointmentDate" ColumnName="AppointmentDate" />
+                <ScalarProperty Name="PetId" ColumnName="PetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Owners">
+            <EntityTypeMapping TypeName="PawsAndClawsModel.Owner">
+              <MappingFragment StoreEntitySet="Owners">
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Last" ColumnName="Last" />
+                <ScalarProperty Name="First" ColumnName="First" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pets">
+            <EntityTypeMapping TypeName="PawsAndClawsModel.Pet">
+              <MappingFragment StoreEntitySet="Pets">
+                <ScalarProperty Name="PetId" ColumnName="PetId" />
+                <ScalarProperty Name="OwnerId" ColumnName="OwnerId" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="PetName" ColumnName="PetName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
