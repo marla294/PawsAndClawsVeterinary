@@ -3,7 +3,7 @@ using System.Web.Mvc;
 
 namespace PawsAndClaws.Controllers
 {
-    public class HomeController : Controller
+    public class AppointmentController : Controller
     {
         public ActionResult Index()
         {

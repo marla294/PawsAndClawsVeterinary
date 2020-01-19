@@ -22,11 +22,11 @@ namespace PawsAndClaws.Data
     
         public string PetName { get; set; }
         public string Type { get; set; }
-        public Nullable<int> OwnerId { get; set; }
+        public int OwnerId { get; set; }
         public int PetId { get; set; }
     
-        public virtual Owner Owner { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Appointment> Appointments { get; set; }
+        public virtual Owner Owner { get; set; }
     }
 }

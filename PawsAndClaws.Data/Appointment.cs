@@ -14,7 +14,7 @@ namespace PawsAndClaws.Data
     
     public partial class Appointment
     {
-        public Nullable<int> PetId { get; set; }
+        public int PetId { get; set; }
         public Nullable<System.DateTime> AppointmentDate { get; set; }
         public string AppointmentReason { get; set; }
         public int AppointmentId { get; set; }

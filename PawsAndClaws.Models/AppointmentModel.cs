@@ -15,7 +15,7 @@ namespace PawsAndClaws.Models
         }
 
         public int AppointmentId { get; set; }
-        public int? PetId { get; set; }
+        public int PetId { get; set; }
         public DateTime? AppointmentDate { get; set; }
         public string AppointmentReason { get; set; }
         public virtual PetModel Pet { get; set; }

@@ -16,7 +16,7 @@ namespace PawsAndClaws.Models
         public int PetId { get; set; }
         public string PetName { get; set; }
         public string Type { get; set; }
-        public int? OwnerId { get; set; }
+        public int OwnerId { get; set; }
         public virtual OwnerModel Owner { get; set; }
 
         public Pet ToDTO()

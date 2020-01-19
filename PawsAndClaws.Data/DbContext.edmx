@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="AppointmentId" />
           </Key>
-          <Property Name="PetId" Type="int" />
+          <Property Name="PetId" Type="int" Nullable="false" />
           <Property Name="AppointmentDate" Type="datetime" />
           <Property Name="AppointmentReason" Type="nchar" MaxLength="128" />
           <Property Name="AppointmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
@@ -30,11 +30,11 @@
           </Key>
           <Property Name="PetName" Type="nchar" MaxLength="128" />
           <Property Name="Type" Type="nchar" MaxLength="128" />
-          <Property Name="OwnerId" Type="int" />
+          <Property Name="OwnerId" Type="int" Nullable="false" />
           <Property Name="PetId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
         <Association Name="FK__Appointme__PetId__44FF419A">
-          <End Role="Pets" Type="Self.Pets" Multiplicity="0..1" />
+          <End Role="Pets" Type="Self.Pets" Multiplicity="1" />
           <End Role="Appointments" Type="Self.Appointments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pets">
@@ -46,7 +46,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK__Pets__OwnerId__440B1D61">
-          <End Role="Owners" Type="Self.Owners" Multiplicity="0..1" />
+          <End Role="Owners" Type="Self.Owners" Multiplicity="1" />
           <End Role="Pets" Type="Self.Pets" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Owners">
@@ -78,20 +78,20 @@
           <EntitySet Name="Appointments" EntityType="PawsAndClawsModel.Appointment" />
           <EntitySet Name="Owners" EntityType="PawsAndClawsModel.Owner" />
           <EntitySet Name="Pets" EntityType="PawsAndClawsModel.Pet" />
-          <AssociationSet Name="FK__Pets__OwnerId__440B1D61" Association="PawsAndClawsModel.FK__Pets__OwnerId__440B1D61">
-            <End Role="Owner" EntitySet="Owners" />
-            <End Role="Pet" EntitySet="Pets" />
-          </AssociationSet>
           <AssociationSet Name="FK__Appointme__PetId__44FF419A" Association="PawsAndClawsModel.FK__Appointme__PetId__44FF419A">
             <End Role="Pet" EntitySet="Pets" />
             <End Role="Appointment" EntitySet="Appointments" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Pets__OwnerId__440B1D61" Association="PawsAndClawsModel.FK__Pets__OwnerId__440B1D61">
+            <End Role="Owner" EntitySet="Owners" />
+            <End Role="Pet" EntitySet="Pets" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Appointment">
           <Key>
             <PropertyRef Name="AppointmentId" />
           </Key>
-          <Property Name="PetId" Type="Int32" />
+          <Property Name="PetId" Type="Int32" Nullable="false" />
           <Property Name="AppointmentDate" Type="DateTime" Precision="3" />
           <Property Name="AppointmentReason" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
           <Property Name="AppointmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
@@ -114,25 +114,13 @@
           </Key>
           <Property Name="PetName" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
           <Property Name="Type" Type="String" MaxLength="128" FixedLength="true" Unicode="true" />
-          <Property Name="OwnerId" Type="Int32" />
+          <Property Name="OwnerId" Type="Int32" Nullable="false" />
           <Property Name="PetId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Owner" Relationship="PawsAndClawsModel.FK__Pets__OwnerId__440B1D61" FromRole="Pet" ToRole="Owner" />
           <NavigationProperty Name="Appointments" Relationship="PawsAndClawsModel.FK__Appointme__PetId__44FF419A" FromRole="Pet" ToRole="Appointment" />
+          <NavigationProperty Name="Owner" Relationship="PawsAndClawsModel.FK__Pets__OwnerId__440B1D61" FromRole="Pet" ToRole="Owner" />
         </EntityType>
-        <Association Name="FK__Pets__OwnerId__440B1D61">
-          <End Type="PawsAndClawsModel.Owner" Role="Owner" Multiplicity="0..1" />
-          <End Type="PawsAndClawsModel.Pet" Role="Pet" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Owner">
-              <PropertyRef Name="OwnerId" />
-            </Principal>
-            <Dependent Role="Pet">
-              <PropertyRef Name="OwnerId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__Appointme__PetId__44FF419A">
-          <End Type="PawsAndClawsModel.Pet" Role="Pet" Multiplicity="0..1" />
+          <End Type="PawsAndClawsModel.Pet" Role="Pet" Multiplicity="1" />
           <End Type="PawsAndClawsModel.Appointment" Role="Appointment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Pet">
@@ -140,6 +128,18 @@
             </Principal>
             <Dependent Role="Appointment">
               <PropertyRef Name="PetId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Pets__OwnerId__440B1D61">
+          <End Type="PawsAndClawsModel.Owner" Role="Owner" Multiplicity="1" />
+          <End Type="PawsAndClawsModel.Pet" Role="Pet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Owner">
+              <PropertyRef Name="OwnerId" />
+            </Principal>
+            <Dependent Role="Pet">
+              <PropertyRef Name="OwnerId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
