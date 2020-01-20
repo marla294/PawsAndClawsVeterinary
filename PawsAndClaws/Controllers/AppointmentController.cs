@@ -18,25 +18,25 @@ namespace PawsAndClaws.Controllers
 
         public ActionResult Create()
         {
-            var model = new AppointmentModel();
+            var model = new AppointmentViewModel();
 
             return View(model);
         }
 
         [HttpPost]
-        public ActionResult Create(AppointmentModel model)
+        public ActionResult Create(AppointmentViewModel model)
         {
-            model = AppointmentLogic.AddOrEditAppointment(model);
+            AppointmentLogic.AddOrEditAppointment(model);
 
             return View(model);
         }
 
-        [HttpPost]
         public ActionResult Edit(int appointmentId)
         {
-            AppointmentModel model = AppointmentLogic.GetAppointmentModelById(appointmentId);
+            AppointmentViewModel model = AppointmentLogic.GetAppointmentViewModelById(appointmentId);
 
             return View(model);
         }
+
     }
 }

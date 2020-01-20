@@ -24,13 +24,13 @@ namespace PawsAndClaws.Models
         }
 
         public int OwnerId { get; set; }
-        [Display(Name = "First Name: ")]
+
         public string First { get; set; }
-        [Display(Name = "Last Name: ")]
+
         public string Last { get; set; }
-        [Display(Name = "Phone Number: ")]
+
         public string Phone { get; set; }
-        [Display(Name = "Address: ")]
+
         public string Address { get; set; }
 
         public Owner ToDTO()

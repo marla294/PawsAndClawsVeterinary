@@ -1,14 +1,17 @@
 ﻿@model PawsAndClaws.Models.AppointmentViewModel
 
 @{
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Edit";
 }
 
-<h3>Create a new appointment</h3>
+<h3>Edit appointment</h3>
 <br />
 @using (Html.BeginForm("Create", "Appointment", FormMethod.Post))
 {
     @Html.HiddenFor(i => i.AppointmentId)
+    @Html.HiddenFor(i => i.PetId)
+    @Html.HiddenFor(i => i.OwnerId)
+
     <h4>Appointment Information</h4>
     <br />
     <div class="row">

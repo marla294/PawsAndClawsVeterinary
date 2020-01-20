@@ -16,7 +16,10 @@ namespace PawsAndClaws.Logic
 
                 if (owner != null)
                 {
-                    owner = model.ToDTO();
+                    owner.First = model.First;
+                    owner.Last = model.Last;
+                    owner.Phone = model.Phone;
+                    owner.Address = model.Address;
                 }
                 else
                 {

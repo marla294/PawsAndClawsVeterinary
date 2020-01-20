@@ -11,7 +11,6 @@ namespace PawsAndClaws.Models
             PetName = null;
             Type = null;
             OwnerId = 0;
-            Owner = null;
         }
 
         public PetModel(Pet pet)
@@ -20,16 +19,14 @@ namespace PawsAndClaws.Models
             PetName = pet.PetName;
             Type = pet.Type;
             OwnerId = pet.OwnerId;
-            Owner = new OwnerModel(pet.Owner);
         }
 
         public int PetId { get; set; }
         [Display(Name = "Pet Name: ")]
         public string PetName { get; set; }
-        [Display(Name = "Pet Type:")]
+        [Display(Name = "Pet Type: ")]
         public string Type { get; set; }
         public int OwnerId { get; set; }
-        public virtual OwnerModel Owner { get; set; }
 
         public Pet ToDTO()
         {
@@ -38,8 +35,7 @@ namespace PawsAndClaws.Models
                 PetId = PetId,
                 PetName = PetName,
                 Type = Type,
-                OwnerId = OwnerId,
-                Owner = Owner.ToDTO()
+                OwnerId = OwnerId
             };
         }
     }

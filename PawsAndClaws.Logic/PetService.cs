@@ -6,10 +6,10 @@ namespace PawsAndClaws.Logic
 {
     public class PetService
     {
-        public PetModel AddOrEditPet(PetModel model)
+        public PetModel AddOrEditPet(PetModel model, OwnerModel ownerModel)
         {
             OwnerService ownerLogic = new OwnerService();
-            ownerLogic.AddOrEditOwner(model.Owner);
+            var owner = ownerLogic.AddOrEditOwner(ownerModel);
 
             Pet pet = new Pet();
 
@@ -19,10 +19,13 @@ namespace PawsAndClaws.Logic
 
                 if (pet != null)
                 {
-                    pet = model.ToDTO();
+                    pet.PetName = model.PetName;
+                    pet.Type = model.Type;
+                    pet.OwnerId = model.OwnerId;
                 }
                 else
                 {
+                    model.OwnerId = owner.OwnerId;
                     pet = db.Pets.Add(model.ToDTO());
                 }
 
@@ -31,5 +34,6 @@ namespace PawsAndClaws.Logic
 
             return new PetModel(pet);
         }
+
     }
 }

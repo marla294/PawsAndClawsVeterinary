@@ -4,6 +4,6 @@ namespace PawsAndClaws.Models
 {
     public class AppointmentsViewModel
     {
-        public List<AppointmentModel> Appointments { get; set; } = new List<AppointmentModel>();
+        public List<AppointmentViewModel> Appointments { get; set; } = new List<AppointmentViewModel>();
     }
 }

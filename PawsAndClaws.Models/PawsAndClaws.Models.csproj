@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="AppointmentModel.cs" />
     <Compile Include="AppointmentsViewModel.cs" />
+    <Compile Include="AppointmentViewModel.cs" />
     <Compile Include="OwnerModel.cs" />
     <Compile Include="PetModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
