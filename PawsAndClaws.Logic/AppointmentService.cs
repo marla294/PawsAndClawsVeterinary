@@ -114,5 +114,21 @@ namespace PawsAndClaws.Logic
             }
 
         }
+
+        public AppointmentModel DeleteAppointmentById(int appointmentId)
+        {
+            Appointment appointment = new Appointment();
+
+            using (var db = new PawsAndClawsEntities())
+            {
+                appointment = db.Appointments.Where(i => i.AppointmentId == appointmentId).FirstOrDefault();
+
+                db.Appointments.Remove(appointment);
+
+                db.SaveChanges();
+            }
+
+            return new AppointmentModel(appointment); ;
+        }
     }
 }

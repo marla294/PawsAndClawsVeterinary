@@ -17,7 +17,7 @@ namespace PawsAndClaws.Models
         public AppointmentModel(Appointment appointment)
         {
             AppointmentId = appointment.AppointmentId;
-            PetId = appointment.Pet.PetId;
+            PetId = appointment.PetId;
             AppointmentDate = appointment.AppointmentDate;
             AppointmentReason = appointment.AppointmentReason;
         }

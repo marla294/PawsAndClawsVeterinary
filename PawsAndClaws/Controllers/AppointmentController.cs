@@ -38,5 +38,12 @@ namespace PawsAndClaws.Controllers
             return View(model);
         }
 
+        public ActionResult Delete(int appointmentId)
+        {
+            AppointmentLogic.DeleteAppointmentById(appointmentId);
+
+            return RedirectToAction("Index", "Appointment");
+        }
+
     }
 }
