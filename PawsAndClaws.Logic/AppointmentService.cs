@@ -21,11 +21,6 @@ namespace PawsAndClaws.Logic
             return model;
         }
 
-        public AppointmentModel CreateNewAppointment(AppointmentModel model)
-        {
-            return model;
-        }
-
         public AppointmentModel AddOrEditAppointment(AppointmentModel model)
         {
             PetService petLogic = new PetService();
@@ -47,6 +42,23 @@ namespace PawsAndClaws.Logic
                 }
 
                 db.SaveChanges();
+            }
+
+            return new AppointmentModel(appointment);
+        }
+
+        public AppointmentModel GetAppointmentModelById(int appointmentId)
+        {
+            Appointment appointment = new Appointment();
+
+            using (var db = new PawsAndClawsEntities())
+            {
+                appointment = db.Appointments.Where(i => i.AppointmentId == appointmentId).FirstOrDefault();
+            }
+
+            if (appointment == null)
+            {
+                return new AppointmentModel();
             }
 
             return new AppointmentModel(appointment);

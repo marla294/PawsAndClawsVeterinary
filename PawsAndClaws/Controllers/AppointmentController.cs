@@ -30,5 +30,13 @@ namespace PawsAndClaws.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public ActionResult Edit(int appointmentId)
+        {
+            AppointmentModel model = AppointmentLogic.GetAppointmentModelById(appointmentId);
+
+            return View(model);
+        }
     }
 }
