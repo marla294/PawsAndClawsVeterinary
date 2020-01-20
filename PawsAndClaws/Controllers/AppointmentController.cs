@@ -28,7 +28,7 @@ namespace PawsAndClaws.Controllers
         {
             AppointmentLogic.AddOrEditAppointment(model);
 
-            return View(model);
+            return RedirectToAction("Index", "Appointment");
         }
 
         public ActionResult Edit(int appointmentId)
